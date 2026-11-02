@@ -231,6 +231,8 @@
   function render() {
     world.style.transform = `translate3d(${cam.x}px,${cam.y}px,0) scale(${cam.z})`;
     back.style.transform = `translate3d(${cam.x * .6}px,${cam.y * .6}px,0) scale(${.8 + cam.z * .2})`;
+    viewport.style.backgroundSize = `${24 * cam.z}px ${24 * cam.z}px`;
+    viewport.style.backgroundPosition = `${cam.x}px ${cam.y}px`;
   }
   // keep the paper filling the screen; while the panel is open allow room beside it
   function clampCam(c = cam) {
