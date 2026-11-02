@@ -187,7 +187,7 @@
     rand = mulberry32(S.seed * 31 + 5);
     // BACK (slow parallax): faint page furniture
     const BW = BOARD.w + 800, BH = BOARD.h + 700;
-    for (let k = 0; k < 34; k++) {
+    for (let k = 0; k < 0; k++) {
       const x = R(-400, BW), y = R(-350, BH), t = pick(['sheet', 'sheet', 'grid', 'column', 'column', 'caption', 'dim', 'crop', 'big', 'grey', 'line']);
       if (t === 'sheet') scrap(back, 's-sheet', x, y, R(220, 520), R(280, 620), R(-6, 6), d => d.style.setProperty('--clip', rand() < .5 ? edge('trbl', .7, 2.5) : cut(1)));
       else if (t === 'grid') scrap(back, 's-grid', x, y, R(180, 360), R(200, 380), R(-5, 5), d => d.style.setProperty('--clip', cut(1.2)));
