@@ -26,9 +26,11 @@ html, body {
 }
 
 /* ============ Board ============ */
-#viewport { position: fixed; inset: 0; overflow: hidden; cursor: grab; touch-action: none; }
-#viewport.dragging { cursor: grabbing; }
-#world, #back { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
+#viewport { position: fixed; inset: 0; overflow: hidden; cursor: grab; touch-action: none;
+  background-image: radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.3px); }
+
+/* no paper sheets, grids, tracing paper or blur veils */
+.s-sheet, .s-grid, .s-trace, .s-grey, .veil { display: none !important; }
 
 /* ============ Cards ============ */
 .card {
