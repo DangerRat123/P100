@@ -28,7 +28,7 @@ window.SETTINGS = {
 
 window.BUILDINGS = [
   {
-    image: "images/01.jpg",
+    image: "images/01.png",
     title: "Building One",
     alt: "Photograph of building one",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
@@ -39,7 +39,7 @@ window.BUILDINGS = [
     credit: "Photo: your name"
   },
   {
-    image: "images/02.jpg",
+    image: "images/02.png",
     title: "Building Two",
     alt: "Photograph of building two",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
@@ -47,7 +47,7 @@ window.BUILDINGS = [
     credit: ""
   },
   {
-    image: "images/03.jpg",
+    image: "images/03.png",
     title: "Building Three",
     alt: "Photograph of building three",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
@@ -55,7 +55,7 @@ window.BUILDINGS = [
     credit: ""
   },
   {
-    image: "images/04.jpg",
+    image: "images/04.png",
     title: "Building Four",
     alt: "Photograph of building four",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
@@ -63,7 +63,7 @@ window.BUILDINGS = [
     credit: ""
   },
   {
-    image: "images/05.jpg",
+    image: "images/05.png",
     title: "Building Five",
     alt: "Photograph of building five",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
@@ -71,7 +71,7 @@ window.BUILDINGS = [
     credit: ""
   },
   {
-    image: "images/06.jpg",
+    image: "images/06.png",
     title: "Building Six",
     alt: "Photograph of building six",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
@@ -79,7 +79,7 @@ window.BUILDINGS = [
     credit: ""
   },
   {
-    image: "images/07.jpg",
+    image: "images/07.png",
     title: "Building Seven",
     alt: "Photograph of building seven",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
@@ -87,7 +87,7 @@ window.BUILDINGS = [
     credit: ""
   },
   {
-    image: "images/08.jpg",
+    image: "images/08.png",
     title: "Building Eight",
     alt: "Photograph of building eight",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
@@ -95,7 +95,7 @@ window.BUILDINGS = [
     credit: ""
   },
   {
-    image: "images/09.jpg",
+    image: "images/09.png",
     title: "Building Nine",
     alt: "Photograph of building nine",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
@@ -103,7 +103,7 @@ window.BUILDINGS = [
     credit: ""
   },
   {
-    image: "images/10.jpg",
+    image: "images/10.png",
     title: "Building Ten",
     alt: "Photograph of building ten",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
