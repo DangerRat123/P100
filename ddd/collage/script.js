@@ -139,8 +139,10 @@
     const order = cards.map((_, k) => k).sort(() => rand() - .5);
     order.forEach((ci, k) => {
       const c = cards[ci], col = k % COLS, row = Math.floor(k / COLS), w = c.el.offsetWidth || 380;
-      c.x = PAD + col * CELL_W + (row % 2 ? CELL_W * .35 : 0) + (CELL_W - w) / 2 + R(-70, 70);
-      c.y = PAD + row * CELL_H + R(-50, 60);
+            const inRow = Math.min(COLS, n - row * COLS);          // centre a part-filled last row
+      c.x = PAD + CELL_W * .175 + col * CELL_W + (COLS - inRow) * CELL_W / 2
+          + (row % 2 ? 1 : -1) * CELL_W * .175 + (CELL_W - w) / 2 + R(-70, 70);
+      c.y = PAD + row * CELL_H + 40 + R(-50, 50);
       c.r = R(-5, 5); c.s = R(.94, 1.06);
       c.el.style.zIndex = BASE_Z + Math.floor(rand() * n);
     });
