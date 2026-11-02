@@ -30,7 +30,7 @@ html, body {
   background-image: radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.3px); }
 
 /* no paper sheets, grids, tracing paper or blur veils */
-.s-sheet, .s-grid, .s-trace, .s-grey, .veil { display: none !important; }
+.scrap, .veil { display: none !important; }
 
 /* ============ Cards ============ */
 .card {
