@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Building Collage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Rubik+Mono+One&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- The collage board: a slow parallax layer behind, and the main layer of cards -->
+  <div id="viewport" aria-label="Collage of buildings. Drag to move around, scroll or pinch to zoom, tap a building to read about it.">
+    <div id="back" aria-hidden="true"></div>
+    <div id="world"></div>
+  </div>
+
+  <!-- Ransom-note title (text comes from SETTINGS.title in data.js) -->
+  <header id="title"></header>
+
+  <!-- Controls -->
+  <nav id="hud" aria-label="Collage controls">
+    <button id="prev" title="Previous building" aria-label="Previous building">&#9664;</button>
+    <button id="next" title="Next building" aria-label="Next building">&#9654;</button>
+    <button id="fit" title="See the whole collage" aria-label="See the whole collage">&#10530;</button>
+    <button id="shuffle" title="Shuffle the collage" aria-label="Shuffle the collage">&#9986; shuffle</button>
+  </nav>
+
+  <!-- Information panel -->
+  <aside id="panel" aria-hidden="true" aria-live="polite">
+    <span class="panel-tape" aria-hidden="true"></span>
+    <button id="close" aria-label="Close">&#10005;</button>
+    <div class="panel-inner">
+      <div class="p-num"></div>
+      <h2 class="p-title"><span></span></h2>
+      <dl class="p-facts"></dl>
+      <div class="p-body"></div>
+      <div class="p-credit"></div>
+    </div>
+    <div class="p-nav">
+      <button id="pPrev">&larr; prev</button>
+      <span id="pCount"></span>
+      <button id="pNext">next &rarr;</button>
+    </div>
+  </aside>
+
+  <div id="hint">drag to wander &middot; scroll or pinch to zoom &middot; tap a building</div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
