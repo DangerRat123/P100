@@ -66,7 +66,7 @@
   const n = DATA.length;
   const COLS = innerWidth < innerHeight ? 2 : Math.max(2, Math.round(Math.sqrt(n * 1.6)));   // 2 columns on upright screens
   const ROWS = Math.ceil(n / COLS);
-  const CELL_W = 520, CELL_H = 500, PAD = 160;
+  const CELL_W = 340, CELL_H = 285, PAD = 160;   // tighter grid = bigger, overlapping pictures
   const BOARD = { w: COLS * CELL_W + CELL_W * .35 + PAD * 2, h: ROWS * CELL_H + PAD * 2 };
   const VARIANTS = ['v-print', 'v-cut', 'v-plate', 'v-print', 'v-copy', 'v-cut'];
   const BASE_Z = 10, TRACE_Z = 5000;   // cards start under the tracing paper; touched ones come above it
@@ -80,7 +80,7 @@
     el.dataset.i = i; el.tabIndex = 0;
     el.setAttribute('role', 'button');
     el.setAttribute('aria-label', item.title || `Building ${i + 1}`);
-    const w = Math.round(R(340, 450) * (item.scale || 1) * (variant === 'v-plate' ? 1.1 : 1));
+    const w = Math.round(R(360, 450) * (item.scale || 1) * (variant === 'v-plate' ? 1.1 : 1));
     el.style.width = w + 'px';
 
     const mount = document.createElement('div'); mount.className = 'mount';
@@ -151,7 +151,7 @@
   // measure the real visible area (not the window), so centring is exact in every browser
   function measure() { const r = viewport.getBoundingClientRect(); vw = r.width || innerWidth; vh = r.height || innerHeight; }
   measure();
-  const MARGIN = () => Math.max(28, Math.min(vw, vh) * .05);
+  const MARGIN = () => Math.max(14, Math.min(vw, vh) * .025);
   const portrait = () => matchMedia('(max-aspect-ratio: 1/1), (max-width: 760px)').matches;
 
   function render() {
@@ -173,30 +173,66 @@
     cam.x = vw / 2 - (minX + maxX) / 2 * cam.z;
     cam.y = vh / 2 - (minY + maxY) / 2 * cam.z;
     render();
-    if (current !== null) present(cards[current], false);
+    // correct for any difference between where we think things are and where the browser draws them
+    const o = screenOffset();
+    if (Math.abs(o.x) > .5 || Math.abs(o.y) > .5) { cam.x -= o.x; cam.y -= o.y; render(); }
+    present();
+  }
+  function screenOffset() {
+    const v = viewport.getBoundingClientRect(), c = cards.find(k => k.i !== current) || cards[0];
+    const r = c.el.getBoundingClientRect();
+    return {
+      x: (r.left + r.right) / 2 - (v.left + cam.x + (c.el.offsetLeft + c.el.offsetWidth / 2) * cam.z),
+      y: (r.top + r.bottom) / 2 - (v.top + cam.y + (c.el.offsetTop + c.el.offsetHeight / 2) * cam.z)
+    };
   }
 
-  /* ---------------- selected picture comes to the middle ---------------- */
-  const MOVE = 'left .9s cubic-bezier(.2,.8,.2,1), top .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1), opacity .6s, filter .6s';
-  function glide(c, on) {
-    c.el.style.transition = on && !reduceMotion ? MOVE : '';
-    clearTimeout(c.tm);
-    if (on) c.tm = setTimeout(() => { c.el.style.transition = ''; }, 950);
+  /* ---------------- selected picture: lifted into the free area beside the text ----------------
+     #stage covers exactly the part of the screen the text panel doesn't, and CSS centres the
+     picture inside it, so it is always in the middle of that area whatever the screen. */
+  const stage = document.getElementById('stage');
+  const LIFT = '.9s cubic-bezier(.2,.8,.2,1)';
+  const FILL = .88;                                   // how much of the free area the picture fills
+  let staged = null;                                  // { c, el }
+  const centreOf = r => ({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
+  function stageScale(el) {
+    const sr = stage.getBoundingClientRect();
+    return Math.min(sr.width * FILL / el.offsetWidth, sr.height * FILL / el.offsetHeight);
   }
-  function present(c, animate = true) {      // centre + enlarge in the free space beside the panel
-    const pw = portrait() ? 0 : panel.offsetWidth, ph = portrait() ? panel.offsetHeight : 0;
-    const aw = vw - pw, ah = vh - ph;
-    const w = c.el.offsetWidth, h = c.el.offsetHeight || w * .8;
-    const s = Math.min(aw * .7 / (w * cam.z), ah * .74 / (h * cam.z));
-    glide(c, animate);
-    c.x = (aw / 2 - cam.x) / cam.z - w / 2;
-    c.y = (ah / 2 - cam.y) / cam.z - h / 2;
-    c.el.style.left = c.x + 'px'; c.el.style.top = c.y + 'px';
-    c.el.style.setProperty('--s', s.toFixed(3));
+  // transform that makes the staged copy sit exactly on top of the original card
+  function overOriginal(c, el) {
+    const o = centreOf(c.el.getBoundingClientRect()), h = centreOf(el.parentNode.getBoundingClientRect());
+    return `translate(${o.x - h.x}px, ${o.y - h.y}px) rotate(${c.r}deg) scale(${cam.z * c.s})`;
   }
-  function sendHome(c) {
-    glide(c, true);
-    c.x = c.hx; c.y = c.hy; setCard(c);
+  function liftCard(c) {
+    const el = c.el.cloneNode(true);
+    el.removeAttribute('tabindex'); el.removeAttribute('role'); el.removeAttribute('data-i');
+    el.className = c.el.className.replace(/\b(lifted|peek|active)\b/g, '') + ' active staged';
+    el.style.cssText = `width:${c.el.offsetWidth}px; z-index:1;`;
+    const holder = document.createElement('div'); holder.className = 'stage-slot';
+    holder.appendChild(el); stage.appendChild(holder);
+    el.style.transition = 'none';
+    el.style.transform = overOriginal(c, el);
+    c.el.classList.add('ghost');
+    void el.offsetWidth;
+    el.style.transition = reduceMotion ? 'none' : `transform ${LIFT}`;
+    el.style.transform = `scale(${stageScale(el)})`;
+    staged = { c, el };
+  }
+  function dropStaged(instant) {
+    if (!staged) return;
+    const { c, el } = staged; staged = null;
+    const holder = el.parentNode;
+    holder.style.zIndex = 0;
+    if (instant || reduceMotion) { holder.remove(); c.el.classList.remove('ghost'); return; }
+    el.style.transition = `transform ${LIFT}`;
+    el.style.transform = overOriginal(c, el);
+    setTimeout(() => { holder.remove(); c.el.classList.remove('ghost'); }, 900);
+  }
+  function present() {                                 // re-fit after a resize
+    if (!staged) return;
+    staged.el.style.transition = 'none';
+    staged.el.style.transform = `scale(${stageScale(staged.el)})`;
   }
 
   /* ---------------- panel ---------------- */
@@ -220,14 +256,14 @@
 
   function select(i) {
     if (i == null || !cards[i] || i === current) return;
-    if (current !== null) { cards[current].el.classList.remove('active'); sendHome(cards[current]); }
+    if (current !== null) { cards[current].el.classList.remove('active'); dropStaged(); }
     current = i;
     const c = cards[i];
-    c.el.classList.add('active'); toTop(c);
+    c.el.classList.add('active');
     document.body.classList.add('has-active');
     fillPanel(i);
     panel.classList.add('open'); panel.setAttribute('aria-hidden', 'false');
-    present(c);
+    liftCard(c);
     hideHint();
   }
   function closePanel() {
@@ -237,7 +273,7 @@
     panel.classList.remove('open'); panel.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('has-active');
     c.el.classList.remove('active');
-    sendHome(c);
+    dropStaged();
   }
   const step = d => select(current === null ? (d > 0 ? 0 : n - 1) : (current + d + n) % n);
 
