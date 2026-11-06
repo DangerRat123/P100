@@ -29,14 +29,14 @@ window.SETTINGS = {
 window.BUILDINGS = [
   {
     image: "images/01.png",
-    title: "Building One",
+    title: "Cell Block",
     alt: "Photograph of building one",
-    facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
+    facts: { Architect: "Unknown", Built: "1882-1883", Location: "Portsmouth Historic Dockyard" },
     text: [
-      "Replace this with what you know about the building. Each string in this list becomes its own paragraph.",
-      "A second paragraph can carry stories, memories, history or anything else you've gathered."
+      "The staircase had been removed and a modern staircase has been installed on the exterior as if to be removable. Glass block elements wouldn’t affect the listed part of the building.",
+      "Contains 12 cells (Grade I listed), which are leased by the University of Portsmouth for small businesses in the Innovation connect network."
     ],
-    credit: "Photo: your name"
+    credit: "Drawing: Xander Marsh"
   },
   {
     image: "images/02.png",
