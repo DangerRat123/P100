@@ -40,11 +40,11 @@ window.BUILDINGS = [
   },
   {
     image: "images/02.png",
-    title: "Building Two",
+    title: "Mast Pond",
     alt: "Photograph of building two",
-    facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
-    text: ["Information about building two."],
-    credit: ""
+    facts: { Architect: "Unknown", Built: "1800s", Location: "Portsmouth Historic Dockyard" },
+    text: ["Made to soak logs and timber for masts to repair small craft."],
+    credit: "Drawing: Xander Marsh"
   },
   {
     image: "images/03.png",
@@ -52,7 +52,7 @@ window.BUILDINGS = [
     alt: "Photograph of building three",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
     text: ["Information about building three."],
-    credit: ""
+    credit: "Drawing: Xander Marsh"
   },
   {
     image: "images/04.png",
@@ -60,7 +60,7 @@ window.BUILDINGS = [
     alt: "Photograph of building four",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
     text: ["Information about building four."],
-    credit: ""
+    credit: "Drawing: Xander Marsh"
   },
   {
     image: "images/05.png",
@@ -68,7 +68,7 @@ window.BUILDINGS = [
     alt: "Photograph of building five",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
     text: ["Information about building five."],
-    credit: ""
+    credit: "Drawing: Xander Marsh"
   },
   {
     image: "images/06.png",
@@ -76,7 +76,7 @@ window.BUILDINGS = [
     alt: "Photograph of building six",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
     text: ["Information about building six."],
-    credit: ""
+    credit: "Drawing: Xander Marsh"
   },
   {
     image: "images/07.png",
@@ -84,7 +84,7 @@ window.BUILDINGS = [
     alt: "Photograph of building seven",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
     text: ["Information about building seven."],
-    credit: ""
+    credit: "Drawing: Xander Marsh"
   },
   {
     image: "images/08.png",
@@ -92,7 +92,7 @@ window.BUILDINGS = [
     alt: "Photograph of building eight",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
     text: ["Information about building eight."],
-    credit: ""
+    credit: "Drawing: Xander Marsh"
   },
   {
     image: "images/09.png",
@@ -100,7 +100,7 @@ window.BUILDINGS = [
     alt: "Photograph of building nine",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
     text: ["Information about building nine."],
-    credit: ""
+    credit: "Drawing: Xander Marsh"
   },
   {
     image: "images/10.png",
@@ -108,6 +108,6 @@ window.BUILDINGS = [
     alt: "Photograph of building ten",
     facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
     text: ["Information about building ten."],
-    credit: ""
+    credit: "Drawing: Xander Marsh"
   }
 ];
