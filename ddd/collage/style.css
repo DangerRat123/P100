@@ -25,12 +25,16 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* paper tooth */
+
 /* ============ Board ============ */
 #viewport { position: fixed; inset: 0; overflow: hidden; cursor: grab; touch-action: none;
   background-image: radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.3px); }
 
-/* no paper sheets, grids, tracing paper or blur veils */
+/* nothing on the table but the pictures */
 .scrap, .veil { display: none !important; }
+#viewport.dragging { cursor: grabbing; }
+#world, #back { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
 
 /* ============ Cards ============ */
 .card {
@@ -175,4 +179,17 @@ body.has-active .card:not(.active) { opacity: .42; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* ============ Selected picture stage (the free area beside the text) ============ */
+#stage {
+  position: fixed; top: 0; left: 0; bottom: 0; right: var(--panel-w);
+  z-index: 35; pointer-events: none;
+}
+.stage-slot { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 1; }
+.card.staged { position: relative; left: auto; top: auto; flex: none; cursor: default; transform-origin: 50% 50%;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.10)) drop-shadow(0 24px 30px rgba(0,0,0,.16)); }
+.card.ghost { opacity: 0 !important; pointer-events: none; transition: none; }
+@media (max-aspect-ratio: 1/1), (max-width: 760px) {
+  #stage { right: 0; bottom: 52vh; }
 }
