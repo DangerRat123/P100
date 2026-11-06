@@ -192,7 +192,7 @@
      picture inside it, so it is always in the middle of that area whatever the screen. */
   const stage = document.getElementById('stage');
   const LIFT = '.9s cubic-bezier(.2,.8,.2,1)';
-  const FILL = .88;                                   // how much of the free area the picture fills
+  const FILL = .75;                                   // how much of the free area the picture fills
   let staged = null;                                  // { c, el }
   const centreOf = r => ({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
   function stageScale(el) {
