@@ -272,3 +272,42 @@ body.has-active .card:not(.active) { opacity: .42; }
   background: #ff5f57; box-shadow: 18px 0 0 #febc2e, 36px 0 0 #28c840;
 }
 .card.staged .bar { justify-content: center; padding-left: 70px; padding-right: 70px; }
+
+/* ============ One typeface everywhere + the text panel as a window ============ */
+:root { --gap: 14px; }
+.card .bar { font-family: var(--tech); font-size: 12.5px; font-weight: 400; letter-spacing: 0; color: #444; }
+.card.staged .bar::before { content: none; display: none; }
+.card.staged .bar { padding: 0 44px; }
+
+#panel {
+  top: var(--gap); right: var(--gap); bottom: var(--gap); height: auto;
+  padding: 0; border-radius: 9px; overflow: hidden;
+  background: #fbfbfa;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.08), 0 24px 48px rgba(0,0,0,.16);
+  transform: translateX(calc(100% + 40px));
+}
+#panel.open { transform: translateX(0); }
+.p-head {
+  position: relative; top: auto; right: auto; flex: none; height: 34px;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 10px;
+  background: linear-gradient(#f7f7f7, #ececec); border-bottom: 1px solid rgba(0,0,0,.12);
+}
+.p-head .p-nav { display: flex; gap: 2px; padding: 0; border: 0; }
+.p-head .p-nav button, #close {
+  font-family: var(--tech); font-size: 15px; line-height: 1; color: #666;
+  width: 26px; height: 22px; padding: 0; border-radius: 5px; letter-spacing: 0; text-transform: none;
+  display: grid; place-items: center; transform: none !important; transition: background .15s, color .15s;
+}
+.p-head .p-nav button:hover, #close:hover { background: rgba(0,0,0,.07); color: var(--ink); }
+#close { font-size: 17px; }
+#close::after { display: none; }
+.panel-inner { padding: 22px 26px 16px; }
+#stage { top: 0; bottom: 0; right: calc(var(--panel-w) + var(--gap)); }
+
+@media (max-aspect-ratio: 1/1), (max-width: 760px) {
+  #panel { top: auto; left: 10px; right: 10px; bottom: 10px; width: auto; height: 50vh; padding: 0; transform: translateY(calc(100% + 30px)); }
+  #panel.open { transform: translateY(0); }
+  .p-head { top: auto; right: auto; }
+  .panel-inner { padding: 16px 18px 12px; }
+  #stage { right: 0; bottom: calc(50vh + 10px); }
+}
