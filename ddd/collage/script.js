@@ -6,6 +6,7 @@
   const S = Object.assign({
     title: 'Collage', seed: 7, idleSeconds: 90, attractMode: true, colourOnTouch: true,
     hint: 'Drag — Tap — Move',
+    tilt: 0,                                       // 0 = windows sit straight; 1 = the old scattered angles
     collageSize: .86,                              // 1 = fill the screen; lower = smaller pictures, more background
     background: 'images/background.png',           // optional picture behind the collage (ignored if missing)
     backgroundOpacity: 1,
@@ -89,6 +90,9 @@
     const mount = document.createElement('div'); mount.className = 'mount';
     if (variant === 'v-cut') mount.style.setProperty('--clip', cut(1.4));
     if (variant === 'v-copy') mount.style.setProperty('--clip', edge('trbl', .8, 2));
+    const bar = document.createElement('div'); bar.className = 'bar';
+    bar.textContent = item.title || '';
+    mount.appendChild(bar);
     const img = document.createElement('img');
     img.alt = item.alt || item.title || ''; img.draggable = false; img.decoding = 'async';
     img.onerror = () => { img.onerror = null; img.src = placeholder(i); };
@@ -127,7 +131,7 @@
 
   function setCard(c) {
     c.el.style.left = c.x + 'px'; c.el.style.top = c.y + 'px';
-    c.el.style.setProperty('--r', c.r.toFixed(2) + 'deg');
+    c.el.style.setProperty('--r', (c.r * S.tilt).toFixed(2) + 'deg');
     c.el.style.setProperty('--s', c.s.toFixed(3));
   }
   const toTop = c => { c.el.style.zIndex = ++zTop; };
@@ -205,7 +209,7 @@
   // transform that makes the staged copy sit exactly on top of the original card
   function overOriginal(c, el) {
     const o = centreOf(c.el.getBoundingClientRect()), h = centreOf(el.parentNode.getBoundingClientRect());
-    return `translate(${o.x - h.x}px, ${o.y - h.y}px) rotate(${c.r}deg) scale(${cam.z * c.s})`;
+    return `translate(${o.x - h.x}px, ${o.y - h.y}px) rotate(${c.r * S.tilt}deg) scale(${cam.z * c.s})`;
   }
   function liftCard(c) {
     const el = c.el.cloneNode(true);
