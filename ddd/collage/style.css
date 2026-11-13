@@ -249,3 +249,26 @@ body.has-active .card:not(.active) { opacity: .42; }
   100% { transform: translate(0, 0); }
 }
 @media (prefers-reduced-motion: reduce) { #grain { animation: none; } }
+
+/* ============ macOS tab / window style for the pictures ============ */
+:root { --ui: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Helvetica Neue', sans-serif; }
+.card .tape, .card .pin, .card .label, .card .cap { display: none !important; }
+.card .mount, .card.v-cut .mount, .card.v-plate .mount, .card.v-copy .mount {
+  padding: 0; background: #fff; clip-path: none !important;
+  border-radius: 7px; overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.14);
+}
+.card .bar {
+  height: 30px; display: flex; align-items: center; justify-content: center; padding: 0 44px;
+  background: linear-gradient(#f7f7f7, #ececec); border-bottom: 1px solid rgba(0,0,0,.12);
+  font-family: var(--ui); font-size: 14px; font-weight: 500; color: #3a3a3a; letter-spacing: -.005em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; position: relative;
+}
+.card img, .card.v-copy img { mix-blend-mode: normal; }
+.card { filter: drop-shadow(0 2px 3px rgba(0,0,0,.10)) drop-shadow(0 10px 18px rgba(0,0,0,.10)); }
+/* the window you are reading gets traffic lights, like a real Mac window */
+.card.staged .bar::before {
+  content: ""; position: absolute; left: 12px; top: 50%; width: 11px; height: 11px; margin-top: -5.5px; border-radius: 50%;
+  background: #ff5f57; box-shadow: 18px 0 0 #febc2e, 36px 0 0 #28c840;
+}
+.card.staged .bar { justify-content: center; padding-left: 70px; padding-right: 70px; }
