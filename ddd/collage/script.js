@@ -6,6 +6,9 @@
   const S = Object.assign({
     title: 'Collage', seed: 7, idleSeconds: 90, attractMode: true, colourOnTouch: true,
     hint: 'Drag — Tap — Move',
+    collageSize: .86,                              // 1 = fill the screen; lower = smaller pictures, more background
+    background: 'images/background.png',           // optional picture behind the collage (ignored if missing)
+    backgroundOpacity: 1,
     captions: ['fig.', 'plan', 'elevation', '1:200'], notes: ['facade', 'entrance']
   }, window.SETTINGS || {});
 
@@ -169,7 +172,7 @@
       minY = Math.min(minY, cy - h / 2); maxY = Math.max(maxY, cy + h / 2);
     });
     const m = MARGIN(), bw = maxX - minX, bh = maxY - minY;
-    cam.z = Math.min((vw - m * 2) / bw, (vh - m * 2) / bh);
+    cam.z = Math.min((vw - m * 2) / bw, (vh - m * 2) / bh) * S.collageSize;
     cam.x = vw / 2 - (minX + maxX) / 2 * cam.z;
     cam.y = vh / 2 - (minY + maxY) / 2 * cam.z;
     render();
@@ -192,7 +195,7 @@
      picture inside it, so it is always in the middle of that area whatever the screen. */
   const stage = document.getElementById('stage');
   const LIFT = '.9s cubic-bezier(.2,.8,.2,1)';
-  const FILL = .75;                                   // how much of the free area the picture fills
+  const FILL = .78;                                   // how much of the free area the picture fills
   let staged = null;                                  // { c, el }
   const centreOf = r => ({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
   function stageScale(el) {
@@ -388,6 +391,18 @@
 
   /* ---------------- resize ---------------- */
   addEventListener('resize', () => { measure(); fitView(); });
+
+  /* ---------------- background picture ---------------- */
+  if (S.background) {
+    const test = new Image();
+    test.onload = () => {
+      const bg = document.createElement('div'); bg.id = 'bgimage';
+      bg.style.backgroundImage = `url("${S.background}")`;
+      bg.style.opacity = S.backgroundOpacity;
+      viewport.insertBefore(bg, viewport.firstChild);
+    };
+    test.src = S.background;
+  }
 
   /* ---------------- go ---------------- */
   scatter(S.seed, false);
