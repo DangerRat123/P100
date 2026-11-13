@@ -111,5 +111,15 @@ window.BUILDINGS = [
     facts: { Architect: "C H Driver", Built: "1866", Location: "Commercial Road, Portsmouth" },
     text: ["The Portsmouth Society intervened to prevent it from being replaced. The Northern wall, east of the station, remains from the Portsmouth and Arundel canal basin - the railway is laid in its bed. The station was the terminus of the line from London, The Board of Ordnance wouldn’t allow the penetration of historic defences of Portsea."],
     credit: "Drawing: Xander Marsh"
+  },
+  {
+    image: "images/11.png",
+    title: "Former Portsmouth Records Office",
+    alt: "Photograph of building eleven",
+    facts: { Architect: "Unknown", Built: "1897", Location: "Street, town" },
+    text: [
+      "Built in 1897, the former Records Office is a distinctive Victorian building with solid brick walls, a timber roof and clay tiles. Originally constructed to house Portsmouth’s historical records, it includes a two-storey caretaker’s lodge and later extensions. After years of being left empty, the building has deteriorated through lack of maintenance, damp and outdated services. Portsmouth City Council considers demolition necessary, citing its condition and the cost of refurbishment. However, local community groups, including the Sustainable Conservation Trust, have challenged this approach, arguing that the building remains a valuable part of Portsmouth’s architectural and cultural heritage. SCT has proposed a phased approach to repair and adaptive reuse, offering opportunities for community activities, creative enterprises and heritage skills training. The building’s future remains uncertain. Its potential loss raises wider questions about the responsibility to maintain publicly owned heritage assets and the environmental cost of demolition. Retaining and adapting the Records Office could preserve its embodied carbon, protect Portsmouth’s collective memory and demonstrate how historic buildings can continue to serve future generations.",
+    ],
+    credit: "Drawing: Xander Marsh"
   }
 ];
