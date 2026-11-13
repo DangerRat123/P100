@@ -72,42 +72,42 @@ window.BUILDINGS = [
   },
   {
     image: "images/06.png",
-    title: "Building Six",
+    title: "Boathouse No.6",
     alt: "Photograph of building six",
-    facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
-    text: ["Information about building six."],
+    facts: { Architect: "Lt Beatson", Built: "1856", Location: "Portsmouth Historic Dockyard" },
+    text: ["Features large under-trussed iron girders which carry the floor joists. A brick building designed around the iron frame. Being repurposed into the new “Royal Marines Museum” - Mainly comprised of small reversible units on the interior. Original purpose to repair and construct small craft. Left roofless for Circa 40 years, Auditorium inserted with the aforementioned cinema screen, independently supported on steel columns."],
     credit: "Drawing: Xander Marsh"
   },
   {
     image: "images/07.png",
-    title: "Building Seven",
+    title: "Clarence Pier",
     alt: "Photograph of building seven",
-    facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
-    text: ["Information about building seven."],
+    facts: { Architect: "A E Cogswell & Sons", Built: "1959-61", Location: "Clarence Pier, Portsmouth" },
+    text: ["Clarence Pier is leased from Portsmouth City Council; the leaseholder is responsible for the maintenance and upkeep of their own coastal defence. Seafront Masterplan proposes demolition of this well-loved entertainment building and replacement by a hotel."],
     credit: "Drawing: Xander Marsh"
   },
   {
     image: "images/08.png",
     title: "Building Eight",
     alt: "Photograph of building eight",
-    facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
-    text: ["Information about building eight."],
+    facts: { Architect: "Unknown", Built: "1798", Location: "Portsmouth Historic Dockyard" },
+    text: ["Originally a two storey building, fireproof to protect the safe where dockyard wages were stored, with unusual swelling fluted columns in the vaulted interior. John Dickens father of Portsmouth born Charles worked here. Reduced to a single storey in WWII. Roofed flagstone floored south corridor. Damp damage to roof and exterior walls. Sub-let to the Sustainable Conservation Trust in 2022."],
     credit: "Drawing: Xander Marsh"
   },
   {
     image: "images/09.png",
-    title: "Building Nine",
+    title: "St. Jude’s Church",
     alt: "Photograph of building nine",
-    facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
-    text: ["Information about building nine."],
+    facts: { Architect: "Thomas Ellis Owen", Built: "1851", Location: "Kent Road, Southsea" },
+    text: ["The Parochial Church Council applied to demolish the church, but their replacement design was so poor, planning permission was refused. A Save St. Jude’s campaign highlighted the church’s role as the centrepiece of Thomas Ellis Owen’s Southsea, a pioneering garden suburb with classical and gothic villas set in winding rustic lanes. Owen received a grant of £1000 for the spire from the Admiralty, a seamark marking the Swashway, the deep-water channel into Portsmouth Harbour. English Heritage grant aided restoration of the spire. The interior was partly remodelled and new spaces created, including the welcoming corner entrance to Palmerston Road."],
     credit: "Drawing: Xander Marsh"
   },
   {
     image: "images/10.png",
-    title: "Building Ten",
+    title: "Portsmouth & Southsea Train Station",
     alt: "Photograph of building ten",
-    facts: { Architect: "Name", Built: "Year", Location: "Street, town" },
-    text: ["Information about building ten."],
+    facts: { Architect: "C H Driver", Built: "1866", Location: "Commercial Road, Portsmouth" },
+    text: ["The Portsmouth Society intervened to prevent it from being replaced. The Northern wall, east of the station, remains from the Portsmouth and Arundel canal basin - the railway is laid in its bed. The station was the terminus of the line from London, The Board of Ordnance wouldn’t allow the penetration of historic defences of Portsea."],
     credit: "Drawing: Xander Marsh"
   }
 ];
