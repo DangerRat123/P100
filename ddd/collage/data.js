@@ -72,6 +72,7 @@ window.BUILDINGS = [
   },
   {
     image: "images/06.png",
+    scale: 0.8,
     title: "Boathouse No.6",
     alt: "Photograph of building six",
     facts: { Architect: "Lt Beatson", Built: "1856", Location: "Portsmouth Historic Dockyard" },
@@ -79,7 +80,8 @@ window.BUILDINGS = [
     credit: "Drawing: Xander Marsh"
   },
   {
-    image: "images/07.png",
+   image: "images/07.png",
+    scale: 1.25,
     title: "Clarence Pier",
     alt: "Photograph of building seven",
     facts: { Architect: "A E Cogswell & Sons", Built: "1959-61", Location: "Clarence Pier, Portsmouth" },
