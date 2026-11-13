@@ -88,7 +88,7 @@ window.BUILDINGS = [
   },
   {
     image: "images/08.png",
-    title: "Building Eight",
+    title: "Old Pay Office",
     alt: "Photograph of building eight",
     facts: { Architect: "Unknown", Built: "1798", Location: "Portsmouth Historic Dockyard" },
     text: ["Originally a two storey building, fireproof to protect the safe where dockyard wages were stored, with unusual swelling fluted columns in the vaulted interior. John Dickens father of Portsmouth born Charles worked here. Reduced to a single storey in WWII. Roofed flagstone floored south corridor. Damp damage to roof and exterior walls. Sub-let to the Sustainable Conservation Trust in 2022."],
