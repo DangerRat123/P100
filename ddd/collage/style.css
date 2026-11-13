@@ -221,3 +221,31 @@ body.has-active .card:not(.active) { opacity: .42; }
   .p-head { top: 12px; right: 18px; }
   .panel-inner { padding-top: 18px; }
 }
+
+/* ============ No numbers on the pictures ============ */
+.card .cap span:first-child, .card .label { display: none; }
+.card .cap { justify-content: flex-end; }
+
+/* ============ Background picture (images/background.png) ============ */
+#bgimage { position: absolute; inset: 0; background: center / cover no-repeat; pointer-events: none; }
+
+/* ============ Moving grain over the whole work ============ */
+#grain {
+  position: fixed; inset: -50%; z-index: 70; pointer-events: none;
+  opacity: .10;                                   /* strength: try .06 (subtler) to .16 (stronger) */
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
+  animation: grain .9s steps(8) infinite;         /* speed of the flicker */
+}
+@keyframes grain {
+  0%   { transform: translate(0, 0); }
+  12%  { transform: translate(-4%, 3%); }
+  25%  { transform: translate(3%, -5%); }
+  37%  { transform: translate(-6%, -2%); }
+  50%  { transform: translate(5%, 4%); }
+  62%  { transform: translate(-2%, 6%); }
+  75%  { transform: translate(6%, -3%); }
+  87%  { transform: translate(-5%, -6%); }
+  100% { transform: translate(0, 0); }
+}
+@media (prefers-reduced-motion: reduce) { #grain { animation: none; } }
